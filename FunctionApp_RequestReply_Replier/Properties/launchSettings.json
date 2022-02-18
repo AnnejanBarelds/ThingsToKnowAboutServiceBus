@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FunctionApp_RequestReply_Replier": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7072"
+    }
+  }
+}

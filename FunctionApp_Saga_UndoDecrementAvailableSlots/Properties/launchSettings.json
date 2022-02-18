@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FunctionApp_Saga_UndoDecrementAvailableSlots": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7084"
+    }
+  }
+}

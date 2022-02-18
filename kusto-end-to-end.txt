@@ -1,0 +1,27 @@
+let parents = view(){requests
+| where name == "DistributedOperation"
+| top 1 by timestamp desc
+| extend operation_toplevelparentId = operation_Id
+| project id, operation_Id, operation_toplevelparentId};
+let nested = view(){requests
+| where isnotnull(customDimensions["_MS.links"]) 
+| mv-expand ex = parse_json(tostring(customDimensions["_MS.links"]))
+| extend operation_toplevelparentId = tostring(ex.operation_Id)
+| join (parents) on $left.operation_toplevelparentId == $right.operation_Id
+| project id, operation_Id, operation_toplevelparentId};
+let nested2 = view(){requests
+| where isnotnull(customDimensions["_MS.links"]) 
+| mv-expand ex = parse_json(tostring(customDimensions["_MS.links"]))
+| extend parent = tostring(ex.operation_Id)
+| join (nested) on $left.parent == $right.operation_Id
+| project id, operation_Id, operation_toplevelparentId
+};
+let nested3 = view(){requests
+| where name == "Sink"
+| join (nested2) on operation_Id
+};
+let operations = view(){parents | union nested, nested2, nested3};
+traces
+| join kind=inner (operations) on $left.operation_ParentId == $right.id
+| order by timestamp asc
+| project operation_toplevelparentId, operation_Id, timestamp, message, cloud_RoleInstance, cloud_RoleName

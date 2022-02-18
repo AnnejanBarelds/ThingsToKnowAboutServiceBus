@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FunctionApp_Saga_IncreaseMonthlyFee": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7083"
+    }
+  }
+}

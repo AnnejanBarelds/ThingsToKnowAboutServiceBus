@@ -1,0 +1,125 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">5 Things Every Developer Should Know About Azure Service Bus</h1>
+    <p>Watch along at <a href="https://5things.azurewebsites.net/index">https://5things.azurewebsites.net/index</a></p>
+    <p>
+        <span><button class="btn btn-primary" id="fifo">FIFO</button></span>&nbsp;
+        <span><button class="btn btn-primary" id="fifosingleton">FIFO Singleton</button></span>&nbsp;
+        <span><button class="btn btn-primary" id="fifosession">FIFO Session</button></span>&nbsp;
+        <span><button class="btn btn-primary" id="requestreply">RequestReply</button></span>&nbsp;
+        <span><button class="btn btn-primary" id="requestcallback">RequestCallback</button></span>&nbsp;
+        <span><button class="btn btn-primary" id="compensatingtransactions">CompensatingTransactions</button></span>&nbsp;
+        <span><button class="btn btn-primary" id="crossentitytransactions">CrossEntityTransactions</button></span>&nbsp;
+        <span><button class="btn btn-primary" id="endtoend">EndToEndTracing</button></span>&nbsp;
+    </p>
+</div>
+<div id="messages"></div>
+
+@section scripts{
+    <script>
+        $(function () {
+            $('#fifo').on('click', function () {
+                $.ajax({
+                    url: '/?handler=Fifo'
+                });
+            });
+        });
+    </script>
+        <script>
+        $(function () {
+            $('#fifosingleton').on('click', function () {
+                document.getElementById("messages").innerHTML = null;
+                $.ajax({
+                    url: '/?handler=FifoSingleton'
+                });
+            });
+        });
+    </script>
+        <script>
+        $(function () {
+            $('#fifosession').on('click', function () {
+                document.getElementById("messages").innerHTML = null;
+                $.ajax({
+                    url: '/?handler=FifoSession'
+                });
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            $('#requestreply').on('click', function () {
+                document.getElementById("messages").innerHTML = null;
+                $.ajax({
+                    url: '/?handler=RequestReply'
+                });
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            $('#requestcallback').on('click', function () {
+                document.getElementById("messages").innerHTML = null;
+                $.ajax({
+                    url: '/?handler=RequestCallback'
+                });
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            $('#compensatingtransactions').on('click', function () {
+                document.getElementById("messages").innerHTML = null;
+                $.ajax({
+                    url: '/?handler=CompensatingTransactions'
+                });
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            $('#crossentitytransactions').on('click', function () {
+                document.getElementById("messages").innerHTML = null;
+                $.ajax({
+                    url: '/?handler=CrossEntityTransactions'
+                });
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            $('#endtoend').on('click', function () {
+                document.getElementById("messages").innerHTML = null;
+                $.ajax({
+                    url: '/?handler=EndToEndTracing'
+                });
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            $('#clean').on('click', function () {
+                document.getElementById("messages").innerHTML = null;
+            });
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.7/signalr.min.js"></script>
+    <script>
+            let messages = document.querySelector('#messages');
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl('https://5things.azurewebsites.net')
+        .build();
+        connection.on('newMessage', (message) => {
+            var p = document.getElementById("messages").appendChild(document.createElement("p"));
+            p.innerHTML = message;
+            window.scrollTo(0, document.body.scrollHeight);
+        });
+
+      connection.start({ withCredentials: false })
+        .catch(console.error);
+    </script>
+}

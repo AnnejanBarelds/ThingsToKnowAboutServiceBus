@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FunctionApp_FIFO_WithoutSessions": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7092"
+    }
+  }
+}

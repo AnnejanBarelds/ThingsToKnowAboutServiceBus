@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FunctionApp_Saga_DecrementAvailableSlots": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7082"
+    }
+  }
+}

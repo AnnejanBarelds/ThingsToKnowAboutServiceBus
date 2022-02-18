@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FunctionApp_AsyncProcess_Step2": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7075"
+    }
+  }
+}

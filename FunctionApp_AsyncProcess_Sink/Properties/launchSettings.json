@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FunctionApp_AsyncProcess_Sink": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7076"
+    }
+  }
+}

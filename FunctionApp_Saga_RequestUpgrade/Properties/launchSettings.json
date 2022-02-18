@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FunctionApp_Saga_RequestUpgrade": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7081"
+    }
+  }
+}
