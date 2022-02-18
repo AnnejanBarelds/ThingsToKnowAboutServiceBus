@@ -23,7 +23,6 @@ namespace WebApp
             {
                 AutoCompleteMessages = true
             };
-            options.SessionIds.Add("MyWebApp");
             _processor = _client.CreateSessionProcessor("replyqueue", options);
             _processor.ProcessMessageAsync += ProcessMessageAsync;
             _processor.ProcessErrorAsync += ProcessErrorAsync;
@@ -32,12 +31,21 @@ namespace WebApp
 
         private Task ProcessErrorAsync(ProcessErrorEventArgs arg)
         {
-            throw new NotImplementedException();
+            return Task.CompletedTask;
         }
 
         private async Task ProcessMessageAsync(ProcessSessionMessageEventArgs arg)
         {
-            await _logToSignalR.SendMessage($"Received callback on SessionId = {arg.SessionId}");
+            var state = await arg.GetSessionStateAsync();
+            var sessionState = state != null ? state.ToObjectFromJson<SessionState>() : new SessionState();
+            var result = arg.Message.Body.ToObjectFromJson<JobResult>();
+            if (sessionState.SetJobResult(result))
+            {
+                await _logToSignalR.SendMessage($"All jobs returned a value on reply session = {arg.SessionId}");
+                await _logToSignalR.SendMessage($"Job 1 success = {sessionState.Job1Result!.Success} on reply session = {arg.SessionId}");
+                await _logToSignalR.SendMessage($"Job 2 success = {sessionState.Job2Result!.Success} on reply session = {arg.SessionId}");
+            }
+            await arg.SetSessionStateAsync(BinaryData.FromObjectAsJson(sessionState));
         }
 
         public async Task StopAsync(CancellationToken cancellationToken)

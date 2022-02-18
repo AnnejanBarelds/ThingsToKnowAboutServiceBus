@@ -96,6 +96,16 @@ namespace WebApp.Pages
             return new EmptyResult();
         }
 
+        public async Task<EmptyResult> OnGetFanOutFanInAsync()
+        {
+            _logger.LogInformation("Starting process...");
+            var replySession = Guid.NewGuid().ToString();
+            await _logToSignalR.SendMessage($"Sending request message with reply session {replySession}...");
+            var sender = _serviceBusClient.CreateSender("fanouttopic");
+            await sender.SendMessageAsync(new ServiceBusMessage() { ReplyTo = "replyqueue", ReplyToSessionId = replySession });
+            return new EmptyResult();
+        }
+
         public async Task<EmptyResult> OnGetRequestReplyAsync()
         {
             _logger.LogInformation("Starting process...");

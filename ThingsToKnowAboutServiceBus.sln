@@ -44,6 +44,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionApp_FIFO_WithSessio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csproj", "{228294A3-9AA2-4EF2-A31A-F4BAAAB57DA4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FanOutFanIn", "FanOutFanIn", "{99255A45-090F-463C-A8D6-8EED5BF05DC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionApp_FanOutFanIn_Subscriber", "FunctionApp_FanOutFanIn_Subscriber\FunctionApp_FanOutFanIn_Subscriber.csproj", "{983EB6DF-A7CB-4B9D-8859-BF0594492C5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -106,6 +110,10 @@ Global
 		{228294A3-9AA2-4EF2-A31A-F4BAAAB57DA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{228294A3-9AA2-4EF2-A31A-F4BAAAB57DA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{228294A3-9AA2-4EF2-A31A-F4BAAAB57DA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{983EB6DF-A7CB-4B9D-8859-BF0594492C5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{983EB6DF-A7CB-4B9D-8859-BF0594492C5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{983EB6DF-A7CB-4B9D-8859-BF0594492C5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{983EB6DF-A7CB-4B9D-8859-BF0594492C5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -123,6 +131,7 @@ Global
 		{58F14F39-8012-4538-8FD8-8CF125455B8A} = {43CA716A-992F-4611-994A-4B65A9489CDC}
 		{A808537A-5402-4631-91A3-92699AE2BCE4} = {79681764-2C74-495A-86F7-33DE147AAB40}
 		{19744C5D-B31C-4236-8D1A-065E4289FC4E} = {79681764-2C74-495A-86F7-33DE147AAB40}
+		{983EB6DF-A7CB-4B9D-8859-BF0594492C5F} = {99255A45-090F-463C-A8D6-8EED5BF05DC3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {84AB91E6-E2C9-4BE3-9423-5F7CBA063ECF}
