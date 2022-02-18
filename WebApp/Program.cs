@@ -6,9 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-builder.Services.AddAzureClients(builder =>
+builder.Services.AddAzureClients(acfBuilder =>
 {
-    builder.AddServiceBusClient("Endpoint=sb://annejan.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=do5trUGsZ0m1Q1Pk3SGoOslHIFZYIvPht23Qdupv3gQ=")
+    acfBuilder.AddServiceBusClient(builder.Configuration["Azure:ServiceBus:ConnectionString"])
     .WithName("Client");
 });
 builder.Services.AddApplicationInsightsTelemetry(builder.Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
