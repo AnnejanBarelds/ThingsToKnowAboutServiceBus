@@ -10,9 +10,9 @@ namespace WebApp
         private readonly ILogger _logger;
         private ServiceBusSessionProcessor? _processor;
 
-        public ServiceBusCallbackListener(IAzureClientFactory<ServiceBusClient> serviceBusClientFactory, LogToSignalR logToSignalR, ILogger<ServiceBusCallbackListener> logger)
+        public ServiceBusCallbackListener(ServiceBusClient serviceBusClient, LogToSignalR logToSignalR, ILogger<ServiceBusCallbackListener> logger)
         {
-            _client = serviceBusClientFactory.CreateClient("Client");
+            _client = serviceBusClient;
             _logToSignalR = logToSignalR;
             _logger = logger;
         }

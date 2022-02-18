@@ -16,14 +16,14 @@ namespace WebApp.Pages
 
         public IndexModel(
             ILogger<IndexModel> logger,
-            IAzureClientFactory<ServiceBusClient> serviceBusClientFactory,
+            ServiceBusClient serviceBusClient,
             LogToSignalR logToSignalR,
             TelemetryClient telemetryClient
             )
         {
             _logger = logger;
             _logToSignalR = logToSignalR;
-            _serviceBusClient = serviceBusClientFactory.CreateClient("Client");
+            _serviceBusClient = serviceBusClient;
             _telemetryClient = telemetryClient;
         }
 

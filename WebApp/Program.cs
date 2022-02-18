@@ -8,8 +8,7 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddAzureClients(acfBuilder =>
 {
-    acfBuilder.AddServiceBusClient(builder.Configuration["Azure:ServiceBus:ConnectionString"])
-    .WithName("Client");
+    acfBuilder.AddServiceBusClient(builder.Configuration["Azure:ServiceBus:ConnectionString"]);
 });
 builder.Services.AddApplicationInsightsTelemetry(builder.Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
 builder.Services.AddSingleton<LogToSignalR>();
