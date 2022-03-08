@@ -11,12 +11,11 @@
         <span><button class="btn btn-primary" id="fifo">FIFO</button></span>&nbsp;
         <span><button class="btn btn-primary" id="fifosingleton">FIFO Singleton</button></span>&nbsp;
         <span><button class="btn btn-primary" id="fifosession">FIFO Session</button></span>&nbsp;
-        <span><button class="btn btn-primary" id="requestreply">RequestReply</button></span>&nbsp;
-        <span><button class="btn btn-primary" id="requestcallback">RequestCallback</button></span>&nbsp;
-        <span><button class="btn btn-primary" id="fanoutfanin">Fan Out Fan In</button></span>&nbsp;
-        <span><button class="btn btn-primary" id="compensatingtransactions">CompensatingTransactions</button></span>&nbsp;
-        <span><button class="btn btn-primary" id="crossentitytransactions">CrossEntityTransactions</button></span>&nbsp;
-        <span><button class="btn btn-primary" id="endtoend">EndToEndTracing</button></span>&nbsp;
+        <span><button class="btn btn-primary" id="endtoend">End-To-End Tracing</button></span>&nbsp;
+        <span><button class="btn btn-primary" id="crossentitytransactions">Cross-Entity Transactions</button></span>&nbsp;
+        <span><button class="btn btn-primary" id="compensatingtransactions">Compensating Transactions</button></span>&nbsp;
+        <span><button class="btn btn-primary" id="requestreply">Request-Reply</button></span>&nbsp;
+        <span><button class="btn btn-primary" id="fanoutfanin">Fan-out/Fan-in</button></span>&nbsp;
     </p>
 </div>
 <div id="messages"></div>
@@ -25,6 +24,7 @@
     <script>
         $(function () {
             $('#fifo').on('click', function () {
+                document.getElementById("messages").innerHTML = null;
                 $.ajax({
                     url: '/?handler=Fifo'
                 });
@@ -57,16 +57,6 @@
                 document.getElementById("messages").innerHTML = null;
                 $.ajax({
                     url: '/?handler=RequestReply'
-                });
-            });
-        });
-    </script>
-    <script>
-        $(function () {
-            $('#requestcallback').on('click', function () {
-                document.getElementById("messages").innerHTML = null;
-                $.ajax({
-                    url: '/?handler=RequestCallback'
                 });
             });
         });

@@ -44,8 +44,12 @@ namespace WebApp
                 await _logToSignalR.SendMessage($"All jobs returned a value on reply session = {arg.SessionId}");
                 await _logToSignalR.SendMessage($"Job 1 success = {sessionState.Job1Result!.Success} on reply session = {arg.SessionId}");
                 await _logToSignalR.SendMessage($"Job 2 success = {sessionState.Job2Result!.Success} on reply session = {arg.SessionId}");
+                await arg.SetSessionStateAsync(null); // Set to null; this session is done, so we should clean up or be prepared to pay for storing this state until the end of times
             }
-            await arg.SetSessionStateAsync(BinaryData.FromObjectAsJson(sessionState));
+            else
+            {
+                await arg.SetSessionStateAsync(BinaryData.FromObjectAsJson(sessionState));
+            }
         }
 
         public async Task StopAsync(CancellationToken cancellationToken)

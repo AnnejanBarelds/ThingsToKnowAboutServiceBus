@@ -87,15 +87,6 @@ namespace WebApp.Pages
             return new EmptyResult();
         }
 
-        public async Task<EmptyResult> OnGetRequestCallbackAsync()
-        {
-            _logger.LogInformation("Starting process...");
-            await _logToSignalR.SendMessage($"Sending request message...");
-            var sender = _serviceBusClient.CreateSender("requestqueue");
-            await sender.SendMessageAsync(new ServiceBusMessage($"Request message created at {DateTimeOffset.Now}") { ReplyToSessionId = "MyWebApp" });
-            return new EmptyResult();
-        }
-
         public async Task<EmptyResult> OnGetFanOutFanInAsync()
         {
             _logger.LogInformation("Starting process...");
